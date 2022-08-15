@@ -38,11 +38,13 @@ class MapFrame extends JFrame {
     
     private Map map;
     private final MapPanel mapPanel;
+    private ButtonGroup modeGroup;
     
     MapFrame() {
         super("MAP");
         
         JButton clear = newJButton("CLEAR");
+        clear.setToolTipText("Start a bew Map");
         clear.setForeground(Color.RED.darker());
         clear.addActionListener(new ActionListener() {
             @Override
@@ -52,6 +54,7 @@ class MapFrame extends JFrame {
         });
         
         JButton image = newJButton("Map");
+        image.setToolTipText("Read a new image as background for the current map");
         image.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -60,6 +63,7 @@ class MapFrame extends JFrame {
         });
         
         JButton load = newJButton("Load");
+        load.setToolTipText("Load a saved map, discarding the current one");
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -68,6 +72,7 @@ class MapFrame extends JFrame {
         });
         
         JButton join = newJButton("Join");
+        join.setToolTipText("Add points and lines from a saved map to the current map");
         join.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -76,6 +81,7 @@ class MapFrame extends JFrame {
         });
         
         JButton save = newJButton("Save");
+        save.setToolTipText("Save the current map");
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -84,6 +90,13 @@ class MapFrame extends JFrame {
         });
         
         final JToggleButton points = newJToggleButton("Points");
+        points.setToolTipText("<html>Edit points of current map"
+            + "<dl>"
+            + "  <dt>left-click</dt><dd>add a new point</dd>"
+            + "  <dt>right-click</dt><dd>remmove a point, including connected lines</dd>"
+            + "  <dt>left-drag</dt><dd>move a point</dd>"
+            + "</dl>"
+            );
         points.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -92,6 +105,13 @@ class MapFrame extends JFrame {
         });
         
         final JToggleButton lines = newJToggleButton("Lines");
+        lines.setToolTipText("<html>Edit lines of current map"
+            + "<dl>"
+            + "  <dt>left-click</dt><dd>select/deselect starting point; add a new line to starting point</dd>"
+            + "  <dt>right-click</dt><dd>delete line</dd>"
+            + "  <dt>left-drag</dt><dd>move a point</dd>"
+            + "</dl>"
+            );
         lines.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -100,6 +120,7 @@ class MapFrame extends JFrame {
         });
         
         JButton stat = newJButton("Stat");
+        stat.setToolTipText("Show some statistics");
         stat.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -108,6 +129,7 @@ class MapFrame extends JFrame {
         });
         
         JButton graph = new JButton("Graph");
+        graph.setToolTipText("Open graph dialog");
         graph.setForeground(Color.GREEN.darker());
         graph.addActionListener(new ActionListener() {
             @Override
@@ -116,9 +138,9 @@ class MapFrame extends JFrame {
             }
         });
         
-        ButtonGroup group = new ButtonGroup();
-        group.add(points);
-        group.add(lines);
+        modeGroup = new ButtonGroup();
+        modeGroup.add(points);
+        modeGroup.add(lines);
         
         Box buttons = Box.createHorizontalBox();
         buttons.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -168,6 +190,7 @@ class MapFrame extends JFrame {
     }
     
     private void doClear() {
+        modeGroup.clearSelection();
         map = new Map();
         mapPanel.setMap(map);
         repaint();

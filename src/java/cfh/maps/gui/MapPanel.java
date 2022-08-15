@@ -1,6 +1,6 @@
 package cfh.maps.gui;
 
-import static java.awt.Cursor.CROSSHAIR_CURSOR;
+import static java.awt.Cursor.*;
 import static java.lang.Math.abs;
 
 import java.awt.BasicStroke;
@@ -185,8 +185,15 @@ class MapPanel extends JPanel {
             case POINTS: 
                 setCursor(Cursor.getPredefinedCursor(CROSSHAIR_CURSOR)); 
                 break;
+            case LINES:
+                setCursor(Cursor.getPredefinedCursor(HAND_CURSOR));
+                break;
             default:
+                System.err.println("unhandled mode: " + mode);
+                //$FALL-THROUGH$
+            case NONE:
                 setCursor(Cursor.getDefaultCursor());
+                break;
         }
         repaint();
     }

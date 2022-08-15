@@ -117,12 +117,12 @@ public class Graph {
         for (Node node : nodes) {
             switch (node.getEdgeCount()) {
                 case 0:
-                    assert node.getEdgeCount() == 0 : node.getEdgeCount();
+                    assert node.getEdges().size() == 0 : node.getEdges();
                     dead.add(node);
                     break;
                 case 2:
                     List<Edge> nodeEdges = node.getEdges();
-                    assert nodeEdges.size() == 2 : nodeEdges.size();
+                    assert nodeEdges.size() == 2 : nodeEdges;
                     Edge e1 = nodeEdges.get(0);
                     Edge e2 = nodeEdges.get(1);
                     Node n = (e2.getNode1() == node) ? e2.getNode2() : e2.getNode1();

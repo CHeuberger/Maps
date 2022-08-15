@@ -50,17 +50,29 @@ public class GraphDialog extends JDialog implements ActionListener, PropertyChan
         buttons.setBorder(new EmptyBorder(5, 5, 5, 5));
         buttons.add(Box.createHorizontalStrut(10));
         buttons.add(Box.createHorizontalGlue());
-        buttons.add(newJButton(CMD_COMPACT, "Compact"));
+        buttons.add(newJButton(CMD_COMPACT, "Compact", "Remove unneded points (no or exactly 2 lines)"));
         buttons.add(Box.createHorizontalStrut(20));
-        buttons.add(newJButton(CMD_START, "Start"));
+        buttons.add(newJButton(CMD_START, "Start", "<html>Activates Start mode:<dl>"
+            + "<dt>left-click</dt><dd>set start point</dd>"
+            + "<dt>right-click</dt><dd>clear start point</dd>"
+            + "</dl>"));
         buttons.add(Box.createHorizontalStrut(30));
-        buttons.add(newJButton(CMD_COST, "Cost"));
+        buttons.add(newJButton(CMD_COST, "Cost", "<htm>Activates Cost mode:<dl>"
+            + "<dt>left-click</dt><dd>show best path from start to clicked point (or set start if not yet set</dd>"
+            + "<dt>right-click</dt><dd>clear actual path or disable cost mode</dd>"
+            + "</dl>"));
         buttons.add(Box.createHorizontalStrut(10));
-        buttons.add(newJButton(CMD_SOLVE, "Solve"));
+        buttons.add(newJButton(CMD_SOLVE, "Solve", "<htm>Activates Solver:<dl>"
+            + "<dt>left-click</dt><dd>1st click calculate unbalanced points; further clicks do normalization</dd>"
+            + "<dt>right-click</dt><dd>clear unbalanced points</dd>"
+            + "</dl>"));
         buttons.add(Box.createHorizontalStrut(30));
-        buttons.add(newJButton(CMD_WALK, "Walk"));
+        buttons.add(newJButton(CMD_WALK, "Walk","<htm>Activates Manual Walk mode:<dl>"
+            + "<dt>left-click</dt><dd>add line to last point</dd>"
+            + "<dt>right-click</dt><dd><back one line/dd>"
+            + "</dl>"));
         buttons.add(Box.createHorizontalStrut(20));
-        buttons.add(newJButton(CMD_STAT, "Stat"));
+        buttons.add(newJButton(CMD_STAT, "Stat", null));
         buttons.add(Box.createHorizontalGlue());
         buttons.add(Box.createHorizontalStrut(10));
         
@@ -111,8 +123,11 @@ public class GraphDialog extends JDialog implements ActionListener, PropertyChan
         return label;
     }
     
-    private JButton newJButton(String command, String text) {
+    private JButton newJButton(String command, String text, String tooltip) {
         JButton button = new JButton(text);
+        if (tooltip != null) {
+            button.setToolTipText(tooltip);
+        }
         button.addActionListener(this);
         button.setActionCommand(command);
         button.setMargin(new Insets(2, 2, 2, 2));

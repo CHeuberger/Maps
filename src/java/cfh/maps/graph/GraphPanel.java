@@ -79,14 +79,17 @@ class GraphPanel extends JPanel {
         }
         Cursor cursor = null;
         switch (mode) {
-            case NONE: 
-                cursor = Cursor.getDefaultCursor(); 
-                break;
             case SET_START: 
                 cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR); 
                 break;
             case WALKER:
                 cursor = walker.getCursor();
+                break;
+            default:
+                System.err.println("unhandled mode: " + mode);
+                //$FALL-THROUGH$
+            case NONE: 
+                cursor = Cursor.getDefaultCursor(); 
                 break;
         }
         if (cursor == null) {
@@ -100,7 +103,7 @@ class GraphPanel extends JPanel {
     void setWalker(Walker walker) {
         this.walker = walker;
         setMode(walker != null ? WALKER : NONE);
-        support.firePropertyChange(PROP_MODE, null, walker.getName());
+        support.firePropertyChange(PROP_MODE, null, walker);
     }
     
     void setStart(Node node) {

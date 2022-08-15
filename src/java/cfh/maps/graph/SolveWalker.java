@@ -85,4 +85,9 @@ public class SolveWalker implements Walker {
     public void removeChangeListener(PropertyChangeListener listener) {
         support.removePropertyChangeListener(listener);
     }
+    
+    @Override
+    public String toString() {
+        return getName();
+    }
 }
