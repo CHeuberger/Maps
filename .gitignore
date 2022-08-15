@@ -1,0 +1,8 @@
+*~
+*.bak
+*.swp
+*.orig
+
+/build
+/cpp
+
