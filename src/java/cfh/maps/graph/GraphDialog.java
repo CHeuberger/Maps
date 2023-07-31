@@ -57,17 +57,17 @@ public class GraphDialog extends JDialog implements ActionListener, PropertyChan
             + "<dt>right-click</dt><dd>clear start point</dd>"
             + "</dl>"));
         buttons.add(Box.createHorizontalStrut(30));
-        buttons.add(newJButton(CMD_COST, "Cost", "<htm>Activates Cost mode:<dl>"
+        buttons.add(newJButton(CMD_COST, "Cost", "<html>Activates Cost mode:<dl>"
             + "<dt>left-click</dt><dd>show best path from start to clicked point (or set start if not yet set</dd>"
             + "<dt>right-click</dt><dd>clear actual path or disable cost mode</dd>"
             + "</dl>"));
         buttons.add(Box.createHorizontalStrut(10));
-        buttons.add(newJButton(CMD_SOLVE, "Solve", "<htm>Activates Solver:<dl>"
+        buttons.add(newJButton(CMD_SOLVE, "Solve", "<html>Activates Solver:<dl>"
             + "<dt>left-click</dt><dd>1st click calculate unbalanced points; further clicks do normalization</dd>"
             + "<dt>right-click</dt><dd>clear unbalanced points</dd>"
             + "</dl>"));
         buttons.add(Box.createHorizontalStrut(30));
-        buttons.add(newJButton(CMD_WALK, "Walk","<htm>Activates Manual Walk mode:<dl>"
+        buttons.add(newJButton(CMD_WALK, "Walk","<html>Activates Manual Walk mode:<dl>"
             + "<dt>left-click</dt><dd>add line to last point</dd>"
             + "<dt>right-click</dt><dd><back one line/dd>"
             + "</dl>"));

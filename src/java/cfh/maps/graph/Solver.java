@@ -231,10 +231,8 @@ class Solver {
             ff[0] = hh[0];
             while (open.getSize() > 0) {
                 int x = -1;
-                double min = Double.MAX_VALUE;
                 for (int i : open) {
-                    if (ff[i] < min) {
-                        min = ff[i];
+                    if (x == -1 || ff[i] < ff[x]) {
                         x = i;
                     }
                 }
